@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-span {
+#id-span-play {
     cursor: pointer;
     display: inline-block;
     margin: 10px;
