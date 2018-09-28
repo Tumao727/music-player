@@ -13,6 +13,9 @@ const time = (timeLength) => {
     let min = Math.floor(timeLength / 60)
     let sec = Math.floor(timeLength % 60)
     // 调整时间展示格式
+    if (min < 10) {
+        min = '0' + String(min)
+    }
     if (sec < 10) {
         sec = '0' + String(sec)
     }
@@ -40,9 +43,57 @@ const showAudioTime = (audio) => {
     }, interval)
 }
 
+const nextSong = (() => {
+    let songs = [
+        '1.mp3',
+        '2.mp3',
+        '3.mp3',
+    ]
+    let index = 0
+    return () => {
+        index = (index + 1) % songs.length
+        return songs[index]
+    }
+})()
+
+const lastSong = (() => {
+    let songs = [
+        '1.mp3',
+        '2.mp3',
+        '3.mp3',
+    ]
+    let index = 0
+    return () => {
+        index = (index + songs.length - 1) % songs.length
+        return songs[index]
+    }
+})()
+
+const playLast = (audio) => {
+    let last = e('#id-span-last')
+    bindEvent(last, 'click', () => {
+        let song = lastSong()
+        audio.src = `music\\${song}`
+        log(audio.src)
+        audio.play()
+    })
+}
+
+const playNext = (audio) => {
+    let next = e('#id-span-next')
+    bindEvent(next, 'click', () => {
+        let song = nextSong()
+        audio.src = `music\\${song}`
+        log(audio.src)
+        audio.play()
+    })
+}
+
 const bindEvents = (a) => {
     audioPlayOrPause(a)
     showAudioTime(a)
+    playLast(a)
+    playNext(a)
 }
 
 const __main = () => {
