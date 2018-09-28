@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+}
+
+
+#id-div-container {
+    margin: 20% auto;
+    text-align: center;
+}
+
+span {
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid black;
+}
