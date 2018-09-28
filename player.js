@@ -1,20 +1,16 @@
-const audioPlay = (audio) => {
+const audioPlayOrPause = (audio) => {
     let button = e('#id-span-play')
     bindEvent(button, 'click', () => {
-        audio.play()
-    })
-}
-
-const audioPause = (audio) => {
-    let button = e('#id-span-pause')
-    bindEvent(button, 'click', () => {
-        audio.pause()
+        if (audio.paused) {
+            audio.play()
+        } else {
+            audio.pause()
+        }
     })
 }
 
 const bindEvents = (a) => {
-    audioPlay(a)
-    audioPause(a)
+    audioPlayOrPause(a)
 }
 
 const __main = () => {
