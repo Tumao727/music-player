@@ -9,21 +9,32 @@
     <title>Music Player</title>
 </head>
 <body>
-    <div id="id-div-container">
-        <audio id="id-audio-player" src="music/1.mp3" controls='control' data-status='order'></audio>
-        <br>
-        <!-- 添加随机播放键 -->
-        <span id="id-span-random" class="button">random</span>
-        <span id="id-span-loop" class="button">loop</span>
-        <span id="id-span-last" class="button">last</span>
-        <!-- 加入 play 键，点击后可以进行 play 与 pause 状态的切换-->
-        <span id="id-span-play" class="button">play</span>
-        <span id="id-span-next" class="button">next</span>
-
-        <!-- 加入播放时间 -->
-        <span id="id-span-current"></span>
-        <span id="id-span-separator"></span>
-        <span id="id-span-total"></span>
+    <div class="music-box">
+        <div class="album">
+            <div class="photo"><img src="picture/1.jpg" alt="picture1"></div>
+            <!-- <div class="infos">
+                <div class="song">
+                    <span id="id-span-name">Loser</span>
+                    <span id="id-span-singer">米津玄師</span>
+                </div>
+            </div> -->
+        </div>
+        <div id="id-div-dashboard">
+            <audio id="id-audio-player" src="music/1.mp3" controls='control' data-status='order'></audio>
+            <br>
+            <!-- 添加随机播放键 -->
+            <span id="id-span-random" class="button">random</span>
+            <span id="id-span-loop" class="button">loop</span>
+            <span id="id-span-last" class="button">last</span>
+            <!-- 加入 play 键，点击后可以进行 play 与 pause 状态的切换-->
+            <span id="id-span-play" class="button">play</span>
+            <span id="id-span-next" class="button">next</span>
+            
+            <!-- 加入播放时间 -->
+            <span id="id-span-current"></span>
+            <span id="id-span-separator"></span>
+            <span id="id-span-total"></span>
+        </div>
     </div>
     <script src="player.js"></script>
 </body>

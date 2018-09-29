@@ -2,10 +2,27 @@
     margin: 0;
 }
 
+.music-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    width: 364px;
+    height: initial;
+    background-color: #d2e1c8;
+    box-shadow: 0 0 15px #e4edde;
+    border-radius: 3px;
+    overflow: hidden;
+}
 
-#id-div-container {
-    margin: 20% auto;
-    text-align: center;
+.music-box .album {
+  position: relative;
+}
+
+.music-box img {
+    width: 100%;
+    height: auto;
 }
 
 .button {
