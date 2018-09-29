@@ -45,9 +45,9 @@ const showAudioTime = (audio) => {
 
 const nextSong = (() => {
     let songs = [
-        '1.mp3',
-        '2.mp3',
-        '3.mp3',
+        'music/1.mp3',
+        'music/2.mp3',
+        'music/3.mp3',
     ]
     let index = 0
     return () => {
@@ -58,9 +58,9 @@ const nextSong = (() => {
 
 const lastSong = (() => {
     let songs = [
-        '1.mp3',
-        '2.mp3',
-        '3.mp3',
+        'music/1.mp3',
+        'music/2.mp3',
+        'music/3.mp3',
     ]
     let index = 0
     return () => {
@@ -73,8 +73,7 @@ const playLast = (audio) => {
     let last = e('#id-span-last')
     bindEvent(last, 'click', () => {
         let song = lastSong()
-        audio.src = `music\\${song}`
-        log(audio.src)
+        audio.src = song
         audio.play()
     })
 }
@@ -83,10 +82,98 @@ const playNext = (audio) => {
     let next = e('#id-span-next')
     bindEvent(next, 'click', () => {
         let song = nextSong()
-        audio.src = `music\\${song}`
-        log(audio.src)
+        audio.src = song
         audio.play()
     })
+}
+
+const randomNumber = (range) => {
+    let number = Math.random() * range
+    return Math.floor(number)
+}
+
+const randomSong = () => {
+    var songs = [
+        'music/1.mp3',
+        'music/2.mp3',
+        'music/3.mp3',
+    ]
+    let index = randomNumber(songs.length)
+    return songs[index]
+}
+
+const random = (audio) => {
+    let button = e('#id-span-random')
+    bindEvent(button, 'click', () => {
+        let status = audio.dataset.status
+        // 若之前点过随机模式，则取消，改为默认的顺序播放
+        if (status === 'random') {
+            audio.dataset.status = 'order'
+        // 若之前未点击过随机，则改为随机模式
+        } else {
+            audio.dataset.status = 'random'
+        }
+        bindEventEnded(audio)
+    })
+}
+
+const loop = (audio) => {
+    let button = e('#id-span-loop')
+    bindEvent(button, 'click', () => {
+        let status = audio.dataset.status
+        // 若之前点过循环模式，则取消，改为默认的顺序播放
+        if (status === 'loop') {
+            audio.dataset.status = 'order'
+            audio.loop = false
+            // 若之前未点击过循环，则改为循环模式
+        } else {
+            audio.loop = true
+            audio.dataset.status = 'loop'
+        }
+        bindEventEnded(audio)
+    })
+}
+
+const orderPlay = (audio) => {
+    bindEvent(audio, 'ended', () => {
+        let song = nextSong()
+        audio.src = song
+        audio.play()
+    })
+}
+
+const loopPlay = (audio) => {
+    bindEvent(audio, 'ended', () => {
+        audio.play()
+    })
+}
+
+const randomPlay = (audio) => {
+    bindEvent(audio, 'ended', () => {
+        let song = randomSong()
+        log(song)
+        audio.src = song
+        audio.play()
+    })
+}
+
+const bindEventEnded = (audio) => {
+    let s = audio.dataset.status
+    log(s)
+    if (s === 'order') {
+        orderPlay(audio)
+    }
+    if (s === 'loop') {
+        loopPlay(audio)
+    }
+    if (s === 'random') {
+        randomPlay(audio)
+    }
+}
+
+const playStatus = (audio) => {
+    random(audio)
+    loop(audio)
 }
 
 const bindEvents = (a) => {
@@ -94,6 +181,8 @@ const bindEvents = (a) => {
     showAudioTime(a)
     playLast(a)
     playNext(a)
+    playStatus(a)
+    bindEventEnded(a)
 }
 
 const __main = () => {

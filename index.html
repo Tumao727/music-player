@@ -10,8 +10,11 @@
 </head>
 <body>
     <div id="id-div-container">
-        <audio id="id-audio-player" src="music/1.mp3" controls="controls"></audio>
+        <audio id="id-audio-player" src="music/1.mp3" controls='control' data-status='order'></audio>
         <br>
+        <!-- 添加随机播放键 -->
+        <span id="id-span-random" class="button">random</span>
+        <span id="id-span-loop" class="button">loop</span>
         <span id="id-span-last" class="button">last</span>
         <!-- 加入 play 键，点击后可以进行 play 与 pause 状态的切换-->
         <span id="id-span-play" class="button">play</span>
