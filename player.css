@@ -1,5 +1,12 @@
 * {
     margin: 0;
+    outline: none;
+}
+
+body {
+    background: #ff564c;
+    font-family: 'PT Serif', 'Microsoft YaHei', serif;
+    color: white;
 }
 
 .music-box {
@@ -10,19 +17,52 @@
     padding: 15px;
     width: 364px;
     height: initial;
-    background-color: #d2e1c8;
-    box-shadow: 0 0 15px #e4edde;
+    background-color: #000000;
+    box-shadow: 0 0 8px #1d1d1d;
     border-radius: 3px;
     overflow: hidden;
 }
 
-.music-box .album {
-  position: relative;
+/* 单曲封面图 */
+.photo {
+    text-align: center;
 }
 
 .music-box img {
-    width: 100%;
-    height: auto;
+    width: 360px;
+    height: 360px;
+    opacity: 0.8;
+}
+
+/* 单曲名字与歌手信息 */
+.music-box .infos {
+  background-color: #2727264b;
+  width: 100%;
+  height: 60px;
+}
+
+.music-box .album .infos .song {
+  padding: 10px;
+  color: #cacaca;
+  letter-spacing: 0.5px;
+}
+
+#id-span-name {
+    display: block;
+}
+
+#id-span-singer {
+    font-size: 0.8rem;
+}
+
+/* 时间与进度条 */
+.time {
+    color: #b9b9b8;
+}
+
+/* 控制 */
+.music-box .dashboard {
+  margin-top: 15px;
 }
 
 .button {
@@ -30,5 +70,5 @@
     display: inline-block;
     margin: 5px;
     padding: 5px;
-    border: 1px solid black;
+    border: 1px solid white;
 }

@@ -1,3 +1,60 @@
+// 创建 MusicPlayer 类来存储相关信息与方法
+class MusicPlayer {
+    constructor(index) {
+        this.index = 0
+        this.songs = [
+            'music/1.mp3',
+            'music/2.mp3',
+            'music/3.mp3',
+            'music/4.mp3',
+        ]
+        this.pictures = [
+            'picture/1.jpg',
+            'picture/2.jpg',
+            'picture/3.jpg',
+            'picture/4.jpg',
+        ]
+        this.names = [
+            'Loser',
+            'DROP',
+            'Terror',
+            'Ref:rain',
+        ]
+        this.singer = [
+            '米津玄師',
+            `ROOKiEZ is PUNK'D`,
+            'まふまふ',
+            'Aimer',
+        ]
+    }
+    
+    // 上一首与下一首切换
+    nextSong () {
+        let songs = this.songs
+        this.index = (this.index + 1) % songs.length
+        return songs[this.index]
+    }
+
+    lastSong() {
+        let songs = this.songs
+        this.index = (this.index + songs.length - 1) % songs.length
+        return songs[this.index]
+    }
+
+    // 图片上一张与下一张切换
+    nextPic() {
+        let pictures = this.pictures
+        this.index = (this.index + 1) % pictures.length
+        return pictures[this.index]
+    }
+
+    lastPic() {
+        let pictures = this.pictures
+        this.index = (this.index + pictures.length - 1) % pictures.length
+        return pictures[this.index]
+    }
+}
+
 // 播放及暂停
 const audioPlayOrPause = (audio) => {
     let button = e('#id-span-play')
@@ -45,141 +102,53 @@ const showAudioTime = (audio) => {
     }, interval)
 }
 
-// 上一首 与 下一首 点击切换
-const nextSong = (() => {
-    let songs = [
-        {
-            song: 'music/1.mp3',
-            pic: 'picture/1.jpg',
-            name: 'Loser',
-            singer: '米津玄師',
-        },
-        {
-            song: 'music/2.mp3',
-            pic: 'picture/2.jpg',
-            name: 'DROP',
-            singer: `ROOKiEZ is PUNK'D`,
-        },
-        {
-            song: 'music/3.mp3',
-            pic: 'picture/3.jpg',
-            name: 'Terror',
-            singer: 'まふまふ',
-        },
-    ]
-    let index = 0
-    return () => {
-        index = (index + 1) % songs.length
-        return songs[index]['song']
-    }
-})()
-
-const lastSong = (() => {
-    let songs = [
-        {
-            song: 'music/1.mp3',
-            pic: 'picture/1.jpg',
-            name: 'Loser',
-            singer: '米津玄師',
-        },
-        {
-            song: 'music/2.mp3',
-            pic: 'picture/2.jpg',
-            name: 'DROP',
-            singer: `ROOKiEZ is PUNK'D`,
-        },
-        {
-            song: 'music/3.mp3',
-            pic: 'picture/3.jpg',
-            name: 'Terror',
-            singer: 'まふまふ',
-        },
-    ]
-    let index = 0
-    return () => {
-        index = (index + songs.length - 1) % songs.length
-        return songs[index]['song']
-    }
-})()
-
-// 图片 上一张 与 下一张 切换
-const nextPic = (() => {
-    let songs = [
-        {
-            song: 'music/1.mp3',
-            pic: 'picture/1.jpg',
-            name: 'Loser',
-            singer: '米津玄師',
-        },
-        {
-            song: 'music/2.mp3',
-            pic: 'picture/2.jpg',
-            name: 'DROP',
-            singer: `ROOKiEZ is PUNK'D`,
-        },
-        {
-            song: 'music/3.mp3',
-            pic: 'picture/3.jpg',
-            name: 'Terror',
-            singer: 'まふまふ',
-        },
-    ]
-    let index = 0
-    return () => {
-        index = (index + 1) % songs.length
-        return songs[index]['pic']
-    }
-})()
-
-const lastPic = (() => {
-    let songs = [
-        {
-            song: 'music/1.mp3',
-            pic: 'picture/1.jpg',
-            name: 'Loser',
-            singer: '米津玄師',
-        },
-        {
-            song: 'music/2.mp3',
-            pic: 'picture/2.jpg',
-            name: 'DROP',
-            singer: `ROOKiEZ is PUNK'D`,
-        },
-        {
-            song: 'music/3.mp3',
-            pic: 'picture/3.jpg',
-            name: 'Terror',
-            singer: 'まふまふ',
-        },
-    ]
-    let index = 0
-    return () => {
-        index = (index + songs.length - 1) % songs.length
-        return songs[index]['pic']
-    }
-})()
-
-
-const playLast = (audio, img) => {
+// 点击切换歌曲与图片
+const musicLast = (audio) => {
+    let player = new MusicPlayer()
     let last = e('#id-span-last')
-    bindEvent(last, 'click', () => {
-        let song = lastSong()
+    bindEvent(last, 'click', function() {
+        let song = player.lastSong()
         audio.src = song
         audio.play()
-        let pic = lastPic()
+    })
+}
+
+const pictureLast = (img) => {
+    let player = new MusicPlayer()
+    let last = e('#id-span-last')
+    bindEvent(last, 'click', function () {
+        let pic = player.lastPic()
+        img.src = pic
+    })
+}
+
+const playLast = (audio, img) => {
+    musicLast(audio)
+    pictureLast(img)
+}
+
+const musicNext = (audio) => {
+    let player = new MusicPlayer()
+    let next = e('#id-span-next')
+    bindEvent(next, 'click', function() {
+        let song = player.nextSong()
+        audio.src = song
+        audio.play()
+    })
+}
+
+const pictureNext = (img) => {
+    let player = new MusicPlayer()
+    let next = e('#id-span-next')
+    bindEvent(next, 'click', function() {
+        let pic = player.nextPic()
         img.src = pic
     })
 }
 
 const playNext = (audio, img) => {
-    let next = e('#id-span-next')
-    bindEvent(next, 'click', () => {
-        let song = nextSong()
-        audio.src = song
-        audio.play()
-        let pic = nextPic()
-        img.src = pic
-    })
+    musicNext(audio)
+    pictureNext(img)
 }
 
 // 随机播放
@@ -189,13 +158,11 @@ const randomNumber = (range) => {
 }
 
 const randomSong = () => {
-    var songs = [
-        'music/1.mp3',
-        'music/2.mp3',
-        'music/3.mp3',
-    ]
-    let index = randomNumber(songs.length)
-    return songs[index]
+    let player = new MusicPlayer()
+    let index = randomNumber(player.songs.length)
+    let song = player.songs[index]
+    let pic = player.pictures[index]
+    return [song, pic]
 }
 
 const random = (audio) => {
@@ -214,11 +181,11 @@ const random = (audio) => {
 }
 
 const randomPlay = (audio) => {
-    bindEvent(audio, 'ended', () => {
-        let song = randomSong()
-        audio.src = song
-        audio.play()
-    })
+    let infos = randomSong()
+    audio.src = infos[0]
+    audio.play()
+    let img = e('img')
+    img.src = infos[1]
 }
 
 // 循环播放
@@ -240,32 +207,42 @@ const loop = (audio) => {
 }
 
 const loopPlay = (audio) => {
-    bindEvent(audio, 'ended', () => {
-        audio.play()
-    })
+    let s = audio.src
+    audio.src = s
 }
 
 // 顺序播放
 const orderPlay = (audio) => {
-    bindEvent(audio, 'ended', () => {
-        let song = nextSong()
-        audio.src = song
+    let img = e('img')
+    let player = new MusicPlayer() 
+    let song = player.nextSong()
+    audio.src = song
+    audio.play()
+    let pic = player.pictures[player.index]
+    img.src = pic
+}
+
+
+const bindEventCanPlay = (audio) => {
+    bindEvent(audio, 'canplay', () => {
         audio.play()
+        showAudioTime(audio)
     })
 }
 
-// 确定播放模式
 const bindEventEnded = (audio) => {
     let s = audio.dataset.status
-    if (s === 'order') {
-        orderPlay(audio)
-    }
-    if (s === 'loop') {
-        loopPlay(audio)
-    }
-    if (s === 'random') {
-        randomPlay(audio)
-    }
+    bindEvent(audio, 'ended', () => {
+        if (s === 'order') {
+            orderPlay(audio)
+        }
+        if (s === 'loop') {
+            loopPlay(audio)
+        }
+        if (s === 'random') {
+            randomPlay(audio)
+        }
+    })
 }
 
 const playStatus = (audio) => {
@@ -278,7 +255,8 @@ const bindEvents = (a, img) => {
     showAudioTime(a)
     playLast(a, img)
     playNext(a, img)
-    playStatus(a)
+    playStatus(a, img)
+    bindEventCanPlay(a)
     bindEventEnded(a)
 }
 
