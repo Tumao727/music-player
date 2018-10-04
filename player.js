@@ -20,7 +20,7 @@ class MusicPlayer {
             'Terror',
             'Ref:rain',
         ]
-        this.singer = [
+        this.singers = [
             '米津玄師',
             `ROOKiEZ is PUNK'D`,
             'まふまふ',
@@ -116,10 +116,16 @@ const musicLast = (audio) => {
 const pictureLast = (img) => {
     let player = new MusicPlayer()
     let last = e('#id-span-last')
+    let singer = e('#id-span-singer')
+    let name = e('#id-span-name')
     bindEvent(last, 'click', function () {
         let pic = player.lastPic()
         img.src = pic
+        // 修改歌曲与歌手信息
+        singer.textContent = player.singers[player.index]
+        name.textContent = player.names[player.index]
     })
+
 }
 
 const playLast = (audio, img) => {
@@ -140,9 +146,13 @@ const musicNext = (audio) => {
 const pictureNext = (img) => {
     let player = new MusicPlayer()
     let next = e('#id-span-next')
+    let singer = e('#id-span-singer')
+    let name = e('#id-span-name')
     bindEvent(next, 'click', function() {
         let pic = player.nextPic()
         img.src = pic
+        singer.textContent = player.singers[player.index]
+        name.textContent = player.names[player.index]
     })
 }
 
@@ -162,7 +172,9 @@ const randomSong = () => {
     let index = randomNumber(player.songs.length)
     let song = player.songs[index]
     let pic = player.pictures[index]
-    return [song, pic]
+    let singer = player.singers[index]
+    let name = player.names[index]
+    return [song, pic, singer, name]
 }
 
 const random = (audio) => {
@@ -186,6 +198,10 @@ const randomPlay = (audio) => {
     audio.play()
     let img = e('img')
     img.src = infos[1]
+    let singer = e('#id-span-singer')
+    singer.textContent = infos[2]
+    let name = e('#id-span-name')
+    name.textContent = infos[3]
 }
 
 // 循环播放
@@ -214,12 +230,16 @@ const loopPlay = (audio) => {
 // 顺序播放
 const orderPlay = (audio) => {
     let img = e('img')
+    let singer = e('#id-span-singer')
+    let name = e('#id-span-name')
     let player = new MusicPlayer() 
     let song = player.nextSong()
     audio.src = song
     audio.play()
     let pic = player.pictures[player.index]
     img.src = pic
+    singer.textContent = player.singers[player.index]
+    name.textContent = player.names[player.index]
 }
 
 
