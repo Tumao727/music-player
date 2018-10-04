@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.loli.net/css?family=PT+Serif" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" href="player.css">
     <script src="tumao.js"></script>
     <title>Music Player</title>
@@ -13,15 +14,13 @@
     <div class="music-box">
         <div class="album">
             <div class="photo"><img src="picture/1.jpg" alt="picture1"></div>
-            <div class="infos">
-                <div class="song">
-                    <span id="id-span-name">Loser</span>
-                    <span id="id-span-singer">米津玄師</span>
-                </div>
+            <div class="song">
+                <span id="id-span-name">Loser</span>
+                <span id="id-span-singer">米津玄師</span>
             </div>
         </div>
         <div id="id-div-dashboard">
-            <audio id="id-audio-player" src="music/1.mp3" data-status='order' controls="controls"></audio>
+            <audio id="id-audio-player" src="music/1.mp3" data-status='order'></audio>
             
             <!-- 加入点击侧边栏 -->
             
@@ -34,14 +33,14 @@
             </div>
 
             <!-- 添加随机播放键 -->
-            <span id="id-span-random" class="button">random</span>
-            <span id="id-span-loop" class="button">loop</span>
+            <span id="id-span-random" class="fas fa-random"></span>
 
-            <span id="id-span-last" class="button">last</span>
-
+            <span id="id-span-last" class="fas fa-backward"></span>
             <!-- 加入 play 键，点击后可以进行 play 与 pause 状态的切换-->
-            <span id="id-span-play" class="button">play</span>
-            <span id="id-span-next" class="button">next</span>
+            <span id="id-span-play" class="fas fa-play"></span>
+            <span id="id-span-next" class="fas fa-forward"></span>
+
+            <span id="id-span-loop" class="fas fa-redo-alt"></span>
 
             <!-- 加入音量控制条 -->
             

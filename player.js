@@ -60,8 +60,12 @@ const audioPlayOrPause = (audio) => {
     let button = e('#id-span-play')
     bindEvent(button, 'click', () => {
         if (audio.paused) {
+            button.classList.remove('fa-play')
+            button.classList.add('fa-pause')
             audio.play()
         } else {
+            button.classList.remove('fa-pause')
+            button.classList.add('fa-play')
             audio.pause()
         }
     })
@@ -110,6 +114,10 @@ const musicLast = (audio) => {
         let song = player.lastSong()
         audio.src = song
         audio.play()
+        // 改图标
+        let button = e('#id-span-play')
+        button.classList.remove('fa-play')
+        button.classList.add('fa-pause')
     })
 }
 
@@ -140,6 +148,10 @@ const musicNext = (audio) => {
         let song = player.nextSong()
         audio.src = song
         audio.play()
+        // 改图标
+        let button = e('#id-span-play')
+        button.classList.remove('fa-play')
+        button.classList.add('fa-pause')
     })
 }
 
@@ -180,6 +192,7 @@ const randomSong = () => {
 const random = (audio) => {
     let button = e('#id-span-random')
     bindEvent(button, 'click', () => {
+        button.classList.toggle('clicked')
         let status = audio.dataset.status
         // 若之前点过随机模式，则取消，改为默认的顺序播放
         if (status === 'random') {
@@ -208,6 +221,7 @@ const randomPlay = (audio) => {
 const loop = (audio) => {
     let button = e('#id-span-loop')
     bindEvent(button, 'click', () => {
+        button.classList.toggle('clicked')
         let status = audio.dataset.status
         // 若之前点过循环模式，则取消，改为默认的顺序播放
         if (status === 'loop') {
@@ -252,7 +266,10 @@ const bindEventCanPlay = (audio) => {
 
 const bindEventEnded = (audio) => {
     let s = audio.dataset.status
+    let button = e('#id-span-play')
     bindEvent(audio, 'ended', () => {
+        button.classList.remove('fa-play')
+        button.classList.add('fa-pause')
         if (s === 'order') {
             orderPlay(audio)
         }
