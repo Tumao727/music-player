@@ -71,6 +71,32 @@ const audioPlayOrPause = (audio) => {
     })
 }
 
+// 进度条自动向前
+const basebarAutoPlay = (audio) => {
+    let progressbar = e('.progressbar')
+    let played = audio.currentTime
+    let total = audio.duration
+    progressbar.style.width = `${played / total * 100}%`
+}
+
+// 点击改变进度条
+const basebarControl = (audio) => {
+    let basebar = e('.basebar')
+    let progressbar = e('.progressbar')
+    basebar.addEventListener('click', (event) => {
+        let playedX = Number(event.offsetX)
+        let total = audio.duration
+        let time = playedX / 300 * total
+        audio.currentTime = time
+        let played = audio.currentTime
+        progressbar.style.width = `${played / total * 100}%`
+        // 改图标
+        let button = e('#id-span-play')
+        button.classList.remove('fa-play')
+        button.classList.add('fa-pause')
+    })
+}
+
 // 显示当前播放时长与歌曲总长度
 const time = (timeLength) => {
     let min = Math.floor(timeLength / 60)
@@ -91,11 +117,9 @@ const audioTime = (audio) => {
     let currentTime = audio.currentTime
 
     let current = e('#id-span-current')
-    let separator = e('#id-span-separator')
     let total = e('#id-span-total')
 
     current.innerHTML = time(currentTime)
-    separator.innerHTML = ' / '
     total.innerHTML = time(totalTime)
 }
 
@@ -103,6 +127,7 @@ const showAudioTime = (audio) => {
     let interval = 300
     setInterval(() => {
         audioTime(audio)
+        basebarAutoPlay(audio)
     }, interval)
 }
 
@@ -290,6 +315,7 @@ const playStatus = (audio) => {
 const bindEvents = (a, img) => {
     audioPlayOrPause(a)
     showAudioTime(a)
+    basebarControl(a)
     playLast(a, img)
     playNext(a, img)
     playStatus(a, img)

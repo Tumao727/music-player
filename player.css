@@ -14,60 +14,103 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 15px;
-    width: 364px;
+    padding-bottom: 15px;
+    width: 350px;
     height: initial;
-    background-color: #000000;
+    background-color: #181717;
     box-shadow: 0 0 8px #1d1d1d;
     border-radius: 3px;
     overflow: hidden;
 }
 
 /* 单曲封面图 */
-.photo {
-    text-align: center;
+#id-div-album {
+    position: relative;
+    background: linear-gradient(0deg, #181717, #000);
+    margin-bottom: 0;
 }
 
-.music-box img {
+.photo {
     width: 360px;
     height: 360px;
+}
+
+img {
+    width: 80%;
+    height: auto;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
     opacity: 0.8;
 }
 
 /* 单曲名字与歌手信息 */
-.album {
-    text-align: center;
-}
 
-.music-box .album .song {
+.song {
     width: 100%;
     height: 60px;
-    padding: 10px;
+    /* margin: 10px; */
     color: #cacaca;
     letter-spacing: 0.5px;
 }
 
 #id-span-name {
     display: block;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 #id-span-singer {
-    font-size: 0.8em;
+    font-size: 0.6em;
 }
 
-/* 时间与进度条 */
+#id-div-infos,
+#id-div-dashboard {
+    margin: 15px;
+    text-align: center;
+}
+
+/* 时间 */
 .time {
     color: #b9b9b8;
     text-align: center;
 }
 
-/* 控制 */
-#id-div-dashboard {
-    margin-top: 15px;
-    text-align: center;
+#id-span-current {
+    float: left;
 }
 
+#id-span-total {
+    float: right;
+}
+
+/* 进度条 */
+.basebar{
+	display: block;
+	border: none;
+	width: 300px;
+	height: 2px;
+	margin: 0px auto 10px auto;
+	border-radius: 2px;
+	background-color: #cacaca;
+	position: relative;
+}
+
+.basebar:hover {
+    transform: scaleY(2);
+    cursor: pointer;
+}
+
+.progressbar{
+	display: block;
+	border: none;
+	width: 0;
+	height: 2px;
+	border-radius: 2px;
+	background-color: #ff564c;
+}
+
+/* 控制 */
 .fas {
     cursor: pointer;
     display: inline-block;
@@ -82,10 +125,12 @@ body {
 }
 
 .fa-random {
+    color: #8a8a8a;
     margin-right: 25px;
 }
 
 .fa-redo-alt {
+    color: #8a8a8a;
     margin-left: 25px;
 }
 
@@ -99,6 +144,23 @@ body {
     font-size: 2em;
 }
 
+.fa-backward:hover,
+.fa-forward:hover,
+.fa-play:hover,
+.fa-pause:hover {
+    color: #bbb;
+}
+
 .clicked {
     color: #ff564c;
-} 
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: '';
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}

@@ -12,38 +12,46 @@
 </head>
 <body>
     <div class="music-box">
-        <div class="album">
-            <div class="photo"><img src="picture/1.jpg" alt="picture1"></div>
+        <div id="id-div-album">
+            <!-- 插入专辑图片 -->
+            <div class="photo">
+                <img src="picture/1.jpg" alt="picture1">
+            </div>
+
+            <!-- 加入点击侧边栏 -->
+        </div>
+        <div id="id-div-infos">
+            <!-- 加入进度条 -->
+            <span class="basebar">
+                <span class="progressbar"></span>
+            </span>
+
+            <!-- 加入播放时间 -->
+            <div class="time clearfix">
+                <span id="id-span-current"></span>
+                <span id="id-span-total"></span>
+            </div>
+
+            <!-- 加入歌曲信息 -->
             <div class="song">
                 <span id="id-span-name">Loser</span>
                 <span id="id-span-singer">米津玄師</span>
             </div>
+            <audio id="id-audio-player" src="music/1.mp3" data-status='order'></audio>
         </div>
         <div id="id-div-dashboard">
-            <audio id="id-audio-player" src="music/1.mp3" data-status='order'></audio>
-            
-            <!-- 加入点击侧边栏 -->
-            
-
-            <!-- 加入播放时间 -->
-            <div class="time">
-                <span id="id-span-current"></span>
-                <span id="id-span-separator"></span>
-                <span id="id-span-total"></span>
-            </div>
-
             <!-- 添加随机播放键 -->
             <span id="id-span-random" class="fas fa-random"></span>
-
+            <!-- 加入点击切换上一首键 -->
             <span id="id-span-last" class="fas fa-backward"></span>
+            
             <!-- 加入 play 键，点击后可以进行 play 与 pause 状态的切换-->
             <span id="id-span-play" class="fas fa-play"></span>
+            <!-- 加入点击切换下一首键 -->
             <span id="id-span-next" class="fas fa-forward"></span>
-
-            <span id="id-span-loop" class="fas fa-redo-alt"></span>
-
-            <!-- 加入音量控制条 -->
             
+            <!-- 加入循环播放键 -->
+            <span id="id-span-loop" class="fas fa-redo-alt"></span>
         </div>
     </div>
     <script src="player.js"></script>
