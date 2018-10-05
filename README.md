@@ -1,6 +1,8 @@
 # music player
 利用原生 JavaScript 实现的音乐播放器
 
+![demo picture]('https://i.loli.net/2018/10/05/5bb7316c47eca.png')
+
 ## 目前功能
 1. 歌曲的播放、暂停
 2. 点击按钮进行 `上一首` / `下一首` 切换
