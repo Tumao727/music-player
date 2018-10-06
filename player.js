@@ -7,24 +7,33 @@ class MusicPlayer {
             'music/2.mp3',
             'music/3.mp3',
             'music/4.mp3',
+            'music/5.mp3',
+            'music/6.mp3',
+
         ]
         this.pictures = [
             'picture/1.jpg',
             'picture/2.jpg',
             'picture/3.jpg',
             'picture/4.jpg',
+            'picture/5.jpg',
+            'picture/6.jpg',
         ]
         this.names = [
             'Loser',
             'DROP',
             'Terror',
             'Ref:rain',
+            'Again',
+            'To the beginning',
         ]
         this.singers = [
             '米津玄師',
             `ROOKiEZ is PUNK'D`,
             'まふまふ',
             'Aimer',
+            'YUI',
+            'Kalafina',
         ]
     }
     
@@ -71,6 +80,13 @@ const audioPlayOrPause = (audio) => {
     })
 }
 
+// 播放暂停时图标变化
+const iconChange = () => {
+    let button = e('#id-span-play')
+    button.classList.remove('fa-play')
+    button.classList.add('fa-pause')
+}
+
 // 进度条自动向前
 const basebarAutoPlay = (audio) => {
     let progressbar = e('.progressbar')
@@ -91,9 +107,7 @@ const basebarControl = (audio) => {
         let played = audio.currentTime
         progressbar.style.width = `${played / total * 100}%`
         // 改图标
-        let button = e('#id-span-play')
-        button.classList.remove('fa-play')
-        button.classList.add('fa-pause')
+        iconChange()
     })
 }
 
@@ -140,9 +154,7 @@ const musicLast = (audio) => {
         audio.src = song
         audio.play()
         // 改图标
-        let button = e('#id-span-play')
-        button.classList.remove('fa-play')
-        button.classList.add('fa-pause')
+        iconChange()
     })
 }
 
@@ -174,9 +186,7 @@ const musicNext = (audio) => {
         audio.src = song
         audio.play()
         // 改图标
-        let button = e('#id-span-play')
-        button.classList.remove('fa-play')
-        button.classList.add('fa-pause')
+        iconChange()
     })
 }
 
